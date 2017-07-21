@@ -1,0 +1,312 @@
+"vundle setting
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'vim-scripts/OmniCppComplete'
+Plugin 'shougo/neocomplete.vim'
+Plugin 'shougo/neoinclude.vim'
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+Plugin 'kien/ctrlp.vim'
+" for AUTO PAIRS auto complete ()
+Plugin 'jiangmiao/auto-pairs'
+
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+"Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+"Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+"base
+set number
+imap jj <ESC>
+set hlsearch
+set incsearch
+set backspace=indent,eol,start
+"设置Tab宽度
+set tabstop=4
+"设置自动对齐空格数
+set shiftwidth=4
+"将Tab键自动转换成空格 真正需要Tab键时使用[Ctrl + V + Tab]
+set expandtab
+"设置按退格键时可以一次删除4个空格
+set softtabstop=4
+"设置按退格键时可以一次删除4个空格
+set smarttab
+
+
+"programmer
+set shiftwidth=4
+set ignorecase
+set showfulltag
+filetype on
+autocmd FileType c,cpp :set smartindent
+ab #d #define
+ab #i #include
+
+"add for cscope
+"cscope configuration
+if has("cscope")
+    set csprg=/usr/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+    " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+    set csverb
+endif
+
+cs add /home/andbase/workspace/data_report/vendor/letv/proprietary/cloudclient/libs/data_report/dr.out /home/andbase/workspace/data_report/vendor/letv/proprietary/cloudclient/libs/data_report/
+cs add /home/andbase/workspace/dante-1.4.1/dan.out /home/andbase/workspace/dante-1.4.1/
+cs add /home/andbase/workspace/source/mqtt3.1.1/mqtt.out /home/andbase/workspace/source/mqtt3.1.1/
+	nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+	" Using 'CTRL-spacebar' then a search type makes the vim window
+	" split horizontally, with search result displayed in
+	" the new window.
+
+	nmap <C-p>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-p>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-p>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-p>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-p>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-p>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-p>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-p>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+
+	" Hitting CTRL-space *twice* before the search type does a vertical
+	" split instead of a horizontal one
+
+	nmap <C-p><C-p>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-p><C-p>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-p><C-p>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-p><C-p>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-p><C-p>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-p><C-p>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+
+	nmap <C-p><C-p>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+
+
+"for neocomplete
+"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+"add for untisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsListSnippets= "<c-l>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+
+
+
+
+"" for onmi complete
+""-------------------------------------------------------------------------------
+"" OmniCppCompletion plugin
+""-------------------------------------------------------------------------------
+"
+"" Enable OmniCompletion
+"" http://vim.wikia.com/wiki/Omni_completion
+"filetype plugin on
+"set omnifunc=syntaxcomplete#Complete
+"
+"" Configure menu behavior
+"" http://vim.wikia.com/wiki/VimTip1386
+"set completeopt=longest,menuone
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+"  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+"inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+"  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+"
+"" Use Ctrl+Space for omni-completion
+"" http://stackoverflow.com/questions/510503/ctrlspace-for-omni-and-keyword-completion-in-vim
+""inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+""  \ "\<lt>C-n>" :
+""  \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+""  \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+""  \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+""imap <C-@> <C-Space>
+"
+"" Popup menu hightLight Group
+"highlight Pmenu ctermbg=13 guibg=LightGray
+"highlight PmenuSel ctermbg=7 guibg=DarkBlue guifg=White
+"highlight PmenuSbar ctermbg=7 guibg=DarkGray
+"highlight PmenuThumb guibg=Black
+"
+"" enable global scope search
+"let OmniCpp_GlobalScopeSearch = 1
+"" show function parameters
+"let OmniCpp_ShowPrototypeInAbbr = 1
+"" show access information in pop-up menu
+"let OmniCpp_ShowAccess = 1
+"" auto complete after '.'
+"let OmniCpp_MayCompleteDot = 1
+"" auto complete after '->'
+"let OmniCpp_MayCompleteArrow = 1
+"" auto complete after '::'
+"let OmniCpp_MayCompleteScope = 1
+"" don't select first item in pop-up menu
+"let OmniCpp_SelectFirstItem = 0
+
+"for ctags
+"set tags+=/letv/workspace/data_report/vendor/letv/proprietary/cloudclient/libs/data_report/dr
+"map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+"map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+
+
+
+"" for ycm
+""let g:ycm_global_ycm_extra_conf = '/home/andbase/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py' 
+"let g:ycm_confirm_extra_conf = 0
+"let g:ycm_seed_identifiers_with_syntax = 1
+"let g:ycm_complete_in_comments = 1
+"let g:ycm_error_symbol = '>>'
+"let g:ycm_warning_symbol = '>*'
+"let g:ycm_complete_in_strings = 1
+"" g:ycm_key_invoke_completion = '<C-a>'
+"
+"nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+"nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+"nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"nmap <F4> :YcmDiags<CR>
+""g:ycm_collect_identifiers_from_tags_files = 1
+"
+"let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
+"let g:ycm_autoclose_preview_window_after_completion = 1
+"
+""This assumes your kernel directory has the word 'kernel'
+"if getcwd() =~ "kernel"
+"    let g:ycm_global_ycm_extra_conf='~/ycm_extra_conf_kernel.py'
+"else
+"    let g:ycm_global_ycm_extra_conf='~/ycm_extra_conf.py'
+"endif
+        
+
