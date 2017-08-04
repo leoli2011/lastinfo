@@ -32,12 +32,14 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 
-Plugin 'kien/ctrlp.vim'
 Plugin 'SirVer/ultisnips'       "这个是片段补全引擎
 Plugin 'honza/vim-snippets'     "这个是片段集合
-
 " for AUTO PAIRS auto complete ()
 Plugin 'jiangmiao/auto-pairs'
+
+
+Plugin 'kien/ctrlp.vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -93,7 +95,7 @@ endif
 
 	nmap <C-p><C-p>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
-"add for untisnips
+"Ultisnips 配置
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"                                      "触发补全代码片段
 let g:UltiSnipsJumpForwardTrigger="<c-j>"                                 "调到下一个补全处
@@ -102,6 +104,9 @@ let g:UltiSnipsListSnippets= "<c-l>"                                      "列�
 let g:UltiSnipsEditSplit="vertical"                                       " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets/UltiSnips'       "定义补全集合文件目录
 let g:UltiSnipsSnippetDirectories=$HOME.'/.vim/bundle/vim-snippets/UltiSnips' "定义的查找目录名, 定义成绝对路径
+
+"Auto pairs 配置
+let g:AutoPairsMoveCharacter = "()[]{}\"'"  " 跳出()用）其它类似
 
 
 let g:ycm_confirm_extra_conf = 0
