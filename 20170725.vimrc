@@ -1,5 +1,5 @@
 "基础设置
-set nocompatible              " 去除兼容vi
+set nocompatible              "去除兼容vi
 set number                    "显示行号
 set nobackup                  "禁止生成临时文件
 syntax on                     "语法高亮
@@ -119,7 +119,10 @@ let g:ycm_goto_buffer_command = 'horizontal-vsplit' "跳转打开新的分屏 :e
 let mapleader = '\'                                 "命令模式,\df跳转到定义,\dc跳转到声明,\de任意找
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR> "跳转到定义，没有定义调到声明
+nnoremap <leader>i :YcmCompleter GoToInclude<CR> "跳转到头文件
+nnoremap <leader>t :YcmCompleter GetType<CR> " 得到光标处变量类型
+"nnoremap <leader>gp :YcmCompleter GetParent<CR>
 nmap <F4> :YcmDiags<CR>
 "g:ycm_collect_identifiers_from_tags_files = 1
 
