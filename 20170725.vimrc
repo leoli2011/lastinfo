@@ -9,11 +9,10 @@ set backspace=indent,eol,start "允许使用退格键
 set tabstop=4                 "设置Tab宽度
 set shiftwidth=4              "设置自动对齐空格数
 set expandtab                 "将Tab键自动转换成空格 真正需要Tab键时使用[Ctrl + V + Tab]
-set ignorecase                 "搜索时 忽略大小写
+set ignorecase                "搜索时 忽略大小写
 set fencs=utf-8,ucs-bom,shift-jis,GB2312,GBK,gb18030,gbk,gb2312,cp936 "支持的字符集
-"设置按退格键时可以一次删除4个空格
-set softtabstop=4
-"设置按退格键时可以一次删除4个空格
+set softtabstop=4             "设置按退格键时可以一次删除4个空格
+
 set smarttab
 set showfulltag
 imap jj <ESC>
@@ -33,10 +32,10 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 
-" Snippets are separated from the engine. Add this if you want them:
-"Plugin 'honza/vim-snippets'
 Plugin 'kien/ctrlp.vim'
-Plugin 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'       "这个是片段补全引擎
+Plugin 'honza/vim-snippets'     "这个是片段集合
+
 " for AUTO PAIRS auto complete ()
 Plugin 'jiangmiao/auto-pairs'
 call vundle#end()            " required
@@ -96,15 +95,13 @@ endif
 
 "add for untisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:UltiSnipsListSnippets= "<c-l>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
-let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsExpandTrigger="<c-j>"                                      "触发补全代码片段
+let g:UltiSnipsJumpForwardTrigger="<c-j>"                                 "调到下一个补全处
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"                                "调到上一个补全处
+let g:UltiSnipsListSnippets= "<c-l>"                                      "列出补全列表
+let g:UltiSnipsEditSplit="vertical"                                       " If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets/UltiSnips'       "定义补全集合文件目录
+let g:UltiSnipsSnippetDirectories=$HOME.'/.vim/bundle/vim-snippets/UltiSnips' "定义的查找目录名, 定义成绝对路径
 
 
 let g:ycm_confirm_extra_conf = 0
