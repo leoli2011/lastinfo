@@ -36,12 +36,23 @@ Plugin 'SirVer/ultisnips'       "这个是片段补全引擎
 Plugin 'honza/vim-snippets'     "这个是片段集合
 " for AUTO PAIRS auto complete ()
 Plugin 'jiangmiao/auto-pairs'
-
+" for symbol window
+Plugin 'majutsushi/tagbar'
 
 Plugin 'kien/ctrlp.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+"add for tagbar
+nnoremap <F8> :TagbarToggle<CR>     "打开关闭符号窗口
+let g:tagbar_ctags_bin='/usr/bin/ctags'
+let g:tagbar_left=1             "设置tagbar的窗口显示的位置,为左边
+let g:tagbar_width=30           "设置符号窗口宽度
+let g:tagbar_autofocus = 1      "是否自动切到符号窗口
+let g:tagbar_sort = 0           "名字是否排序
+let g:tagbar_indent = 1         "每个层次的缩进间隔
+"autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen() "自动打开 
 
 "add for cscope
 "cscope configuration
@@ -61,6 +72,7 @@ if has("cscope")
 endif
 
 "cs add /home/andbase/workspace/source/mqtt3.1.1/mqtt.out /home/andbase/workspace/source/mqtt3.1.1/
+cs add /home/leo/date_report/vendor/letv/proprietary/cloudclient/libs/data_report/dr.out /home/leo/date_report/vendor/letv/proprietary/cloudclient/libs/data_report
 	nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 	nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 	nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
