@@ -38,14 +38,47 @@ Plugin 'honza/vim-snippets'     "这个是片段集合
 Plugin 'jiangmiao/auto-pairs'
 " for symbol window
 Plugin 'majutsushi/tagbar'
+" for file explorer
+Plugin 'scrooloose/nerdtree'
 
 Plugin 'kien/ctrlp.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+"add for Nerdtree
+autocmd vimenter * NERDTree     "自动打开文件浏览窗口
+let NERDTreeWinPos="right"      "窗口显示在右侧
+let NERDTreeAutoCenter=1
+let NERDTreeShowHidden=1         "显示隐藏文件
+let NERDTreeIgnore=['\.pyc','\~$','\.swp'  "忽略这些文件的显示
+let NERDTreeShowBookmarks=1     "自动显示书签
+"let g:nerdtree_tabs_open_on_console_startup=1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif "自动关闭只有文件窗口时
+nnoremap ;fl :NERDTreeToggle<CR>
+"nnoremap <C-n> :NERDTreeToggle<CR>
+" NERDTress File highlighting    "文件颜色方案
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 "add for tagbar
-nnoremap <F8> :TagbarToggle<CR>     "打开关闭符号窗口
+"nnoremap <F8> :TagbarToggle<CR>     "打开关闭符号窗口
+nnoremap ;sl :TagbarToggle<CR>     "打开关闭符号窗口
 let g:tagbar_ctags_bin='/usr/bin/ctags'
 let g:tagbar_left=1             "设置tagbar的窗口显示的位置,为左边
 let g:tagbar_width=30           "设置符号窗口宽度
