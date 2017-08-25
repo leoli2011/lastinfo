@@ -40,22 +40,52 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'majutsushi/tagbar'
 " for file explorer
 Plugin 'scrooloose/nerdtree'
-
+" for fuzzy file find Ctrlp
 Plugin 'kien/ctrlp.vim'
+Bundle 'tacahiroy/ctrlp-funky'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+"保存现场暂时还有问题
+"map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
+"map <F3> :source ~/vim_session <cr> " And load session with F3
+
+"Add for CtrlP
+let g:ctrlp_map = '<leader>p'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
+"map <leader>f :CtrlPMRU<CR>
+map <leader>f :CtrlPMRU<CR>
+let g:ctrlp_by_filename = 1                     "默认使用全路径搜索，置1后按文件名搜索，准确率会有所提高，可以用<C-d>进行切换
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15                        "修改QuickFix窗口显示的最大条目数
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500                         "设置MRU最大条目数为500
+let g:ctrlp_follow_symlinks=1
+" Add for CtrlPFunky
+map <F6> :CtrlPFunky<cr>                         "查找函数
+let g:ctrlp_extensions = ['funky'] 
+let g:ctrlp_funky_syntax_highlight = 1 
+nnoremap <Leader>fu :execute 'CtrlPFunky ' . expand('<cword>')<Cr> "查找当前位置字符的函数 
+
 "add for Nerdtree
-autocmd vimenter * NERDTree     "自动打开文件浏览窗口
+"autocmd vimenter * NERDTree     "自动打开文件浏览窗口
 let NERDTreeWinPos="right"      "窗口显示在右侧
 let NERDTreeAutoCenter=1
 let NERDTreeShowHidden=1         "显示隐藏文件
-let NERDTreeIgnore=['\.pyc','\~$','\.swp'  "忽略这些文件的显示
+let NERDTreeIgnore=['\.pyc','\~$','\.swp']  "忽略这些文件的显示
 let NERDTreeShowBookmarks=1     "自动显示书签
 "let g:nerdtree_tabs_open_on_console_startup=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif "自动关闭只有文件窗口时
 nnoremap ;fl :NERDTreeToggle<CR>
 "nnoremap <C-n> :NERDTreeToggle<CR>
+
 " NERDTress File highlighting    "文件颜色方案
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
