@@ -12,6 +12,7 @@ set expandtab                 "将Tab键自动转换成空格 真正需要Tab键
 set ignorecase                "搜索时 忽略大小写
 set fencs=utf-8,ucs-bom,shift-jis,GB2312,GBK,gb18030,gbk,gb2312,cp936 "支持的字符集
 set softtabstop=4             "设置按退格键时可以一次删除4个空格
+colorscheme desert            "设置颜色方案
 
 set smarttab
 set showfulltag
@@ -136,6 +137,8 @@ endif
 
 "cs add /home/andbase/workspace/source/mqtt3.1.1/mqtt.out /home/andbase/workspace/source/mqtt3.1.1/
 cs add /home/leo/date_report/vendor/letv/proprietary/cloudclient/libs/data_report/dr.out /home/leo/date_report/vendor/letv/proprietary/cloudclient/libs/data_report
+cs add /home/leo/openwrt/mmu_project/application/services/VehicleControlservice/ff91.out  /home/leo/openwrt/mmu_project/application/services/VehicleControlservice/
+cs add /home/leo/openwrt/vendor/ff/packages/apps/CloudService/common.out  /home/leo/openwrt/vendor/ff/packages/apps/CloudService/
 	nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 	nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 	nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
